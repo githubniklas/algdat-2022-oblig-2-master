@@ -47,7 +47,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     //Konstruktør
     public DobbeltLenketListe(T[] a) {
-        throw new UnsupportedOperationException();
+        if (a == null) {                                                        //if-test som sjekker om a er null og thrower en exception.
+            throw new NullPointerException("Tabellen a er null!");
+        }
+        int i = 0;
+        if (a.length > 0) {
+            for (; i < a.length; i++) {                                         //for-løkke som finner første element som ikke er null og lager en node.
+                if (a[i] != null) {
+                    hode = new Node<>(a[i]);
+                    antall++;
+                    break;
+                }
+            }
+        }
     }
 
     public Liste<T> subliste(int fra, int til) {

@@ -6,6 +6,7 @@ package no.oslomet.cs.algdat.Oblig2;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -76,8 +77,35 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
     }
 
-    public Liste<T> subliste(int fra, int til) {
-        throw new UnsupportedOperationException();
+    public Liste<T> subliste(int fra, int til) {                                //metode som returnerer en liste som inneholder verdiene fra intervallet
+        fratilKontroll(antall, fra, til);                                       // [fra:til> i listen
+        Liste<T> liste = new DobbeltLenketListe<>();
+        int lengde = til - fra;
+
+        if (lengde < 1) {
+            return liste;
+        }
+
+        Node<T> current = finnNode(fra);
+
+        while (lengde > 0) {
+            liste.leggInn(current.verdi);
+            current = current.neste;
+            lengde--;
+        }
+        return liste;
+    }
+
+    private void fratilKontroll(int antall, int fra, int til)                   //fra-til-kontroll hjelpemetode
+    {
+        if (fra < 0)
+            throw new IndexOutOfBoundsException();
+
+        if (til > antall)
+            throw new IndexOutOfBoundsException();
+
+        if (fra > til)
+            throw new IllegalArgumentException();
     }
 
     private Node<T> finnNode(int indeks) {
@@ -156,8 +184,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+
     @Override
-    public T oppdater(int indeks, T nyverdi) {
+    public T oppdater(int indeks, T nyverdi) {                                     //Erstatter verdi på plass indeks med nyverdi og returnerer gammel verdi
         Objects.requireNonNull(nyverdi);
         indeksKontroll(indeks, false);
         Node<T> current = finnNode(indeks);

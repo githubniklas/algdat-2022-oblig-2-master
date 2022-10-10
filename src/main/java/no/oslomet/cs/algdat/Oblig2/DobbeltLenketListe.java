@@ -60,6 +60,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 }
             }
         }
+        hale = hode;
+
+        if (hode != null) {                                                     //if-test som lager resten av listen.
+            i++;
+            for (; i < a.length; i++) {
+                if (a[i] != null) {
+                    hale.neste = new Node<>(a[i], hale, null);
+                    hale = hale.neste;
+                    antall++;
+                }
+            }
+        }
     }
 
     public Liste<T> subliste(int fra, int til) {

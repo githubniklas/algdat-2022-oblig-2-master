@@ -80,6 +80,26 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+    private Node<T> finnNode(int indeks) {
+        indeksKontroll(indeks, false);
+        Node<T> current;
+
+        if (indeks < antall/2) {                                                //leting starter fra hode dersom indeks er mindre enn antall/2
+            current = hode;                                                     //og går mot høyre ved hjelp av neste-pekere
+            for (int i = 0; i < indeks; i++) {
+                current = current.neste;
+            }
+            return current;
+        }
+        else {                                                                  //leting starter fra hale dersom indeks ikke er mindre enn antall/2
+            current = hale;                                                     //og går mot venstre ved hjelp av forrige-pekere
+            for (int i = antall - 1; i > indeks; i--) {
+                current = current.forrige;
+            }
+            return current;
+        }
+    }
+
     @Override                                                                   //metode som returnerer antallet verdier i listen
     public int antall() {
         return antall;

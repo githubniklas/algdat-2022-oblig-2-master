@@ -81,7 +81,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     private Node<T> finnNode(int indeks) {
-        indeksKontroll(indeks, false);
         Node<T> current;
 
         if (indeks < antall/2) {                                                //leting starter fra hode dersom indeks er mindre enn antall/2
@@ -117,20 +116,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean leggInn(T verdi) {
-        Node<T> nyNode = new Node<>(verdi);
+        Node<T> current = new Node<>(verdi);
         Objects.requireNonNull(verdi);                                          //requireNonNull sjekk for å finne ut om det er null verdier i listen.
 
         if (hale == null && hode == null && antall == 0) {                      //kjører dersom listen er tom.
-            hode = nyNode;
+            hode = current;
             hale = hode;
             antall++;
             endringer++;
             return true;
         }
         else {                                                                  //kjører dersom listen ikke er tom.
-            nyNode.forrige = hale;
-            hale.neste = nyNode;
-            hale = nyNode;
+            current.forrige = hale;
+            hale.neste = current;
+            hale = current;
             antall++;
             endringer++;
             return true;
@@ -147,7 +146,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks, false);
+        Node<T> current = finnNode(indeks);
+        return current.verdi;
     }
 
     @Override

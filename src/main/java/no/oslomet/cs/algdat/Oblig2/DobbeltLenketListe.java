@@ -36,10 +36,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int antall;            // antall noder i listen
     private int endringer;         // antall endringer i listen
 
+    //Tom liste konstruktør
     public DobbeltLenketListe() {
-        throw new UnsupportedOperationException();
+        hode = null;
+        hale = null;
+
+        antall = 0;
+        endringer = 0;
     }
 
+    //Konstruktør
     public DobbeltLenketListe(T[] a) {
         throw new UnsupportedOperationException();
     }
@@ -48,14 +54,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
-    @Override
+    @Override                                                                   //metode som returnerer antallet verdier i listen
     public int antall() {
-        throw new UnsupportedOperationException();
+        return antall;
     }
 
-    @Override
+    @Override                                                                   //metode som returnerer true/false dersom listen er tom eller ikke.
     public boolean tom() {
-        throw new UnsupportedOperationException();
+        if (hode == null) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @Override

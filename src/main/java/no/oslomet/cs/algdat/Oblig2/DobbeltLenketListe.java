@@ -170,7 +170,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     @Override
-    public boolean inneholder(T verdi) {throw new UnsupportedOperationException();}
+    public boolean inneholder(T verdi) {                                        //returnerer true dersom listen inneholder verdi og returnerer false dersom den ikke gjør det.
+        return indeksTil(verdi) != -1;
+    }
 
     @Override
     public T hent(int indeks) {
@@ -181,16 +183,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {
-        if (verdi == null) {                                                        //returnerer -1 hvis verdi er null
-            return -1;
-        }
-        Node<T> current = hode;
-        for (int i = 0; i < antall; i++, current = current.neste) {                 //for-løkke og if-test som returnerer indeksen til verdi dersom den finnes i listen
+        Node<T> current = hode;                                                 //returnerer indeksen til første verdi, hvis den ikke finnes returnerer -1
+        boolean funnet = false;
+        int indeks = 0;
+
+        while (current != null) {
             if (current.verdi.equals(verdi)) {
-                return i;
+                funnet = true;
+                break;
             }
+            current = current.neste;
+            indeks++;
         }
-        return -1;
+        return funnet ? indeks : -1;
     }
 
 

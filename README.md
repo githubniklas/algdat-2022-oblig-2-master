@@ -2,8 +2,7 @@
 
 Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
 Oppgaven er levert av følgende studenter:
-* Navn Navnesen, S123456, s123456@oslomet.no
-* ...
+* Niklas Laache, S362125, s362125@oslomet.no
 
 # Arbeidsfordeling
 

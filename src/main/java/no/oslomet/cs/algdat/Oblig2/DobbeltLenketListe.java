@@ -181,11 +181,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {
-        if (verdi == null) {                                                    //returnerer -1 hvis verdi er null
+        if (verdi == null) {                                                        //returnerer -1 hvis verdi er null
             return -1;
         }
         Node<T> current = hode;
-        for (int i = 0; i < antall; i++, current = current.neste) {                                      //for-løkke og if-test som returnerer indeksen til verdi dersom den finnes i listen
+        for (int i = 0; i < antall; i++, current = current.neste) {                 //for-løkke og if-test som returnerer indeksen til verdi dersom den finnes i listen
             if (current.verdi.equals(verdi)) {
                 return i;
             }

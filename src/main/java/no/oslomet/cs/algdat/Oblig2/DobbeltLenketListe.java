@@ -166,7 +166,24 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void leggInn(int indeks, T verdi) {
-        throw new UnsupportedOperationException();
+        Objects.requireNonNull(verdi);
+        indeksKontroll(indeks, true);
+
+        if (antall == 0) {                                                      //Bestemmer hvor verdi skal legges dersom antall er 0, indeks er 0 eller dersom
+            hode = hale = new Node<>(verdi, null, null);            //indeks er lik antall
+        }
+        else if (indeks == 0) {
+            hode = hode.forrige = new Node<>(verdi, null, hode);
+        }
+        else if (indeks == antall) {
+            hale = hale.neste = new Node<>(verdi, hale, null);
+        }
+        else {
+            Node<T> current = finnNode(indeks);
+            current.forrige = current.forrige.neste = new Node<>(verdi, current.forrige, current);
+        }
+        antall++;
+        endringer++;
     }
 
     @Override
@@ -197,7 +214,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
         return funnet ? indeks : -1;
     }
-
 
     @Override
     public T oppdater(int indeks, T nyverdi) {                                     //Erstatter verdi på plass indeks med nyverdi og returnerer gammel verdi
@@ -316,6 +332,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
         throw new UnsupportedOperationException();
     }
+
 
 } // class DobbeltLenketListe
 

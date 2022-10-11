@@ -228,12 +228,70 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean fjern(T verdi) {
-        throw new UnsupportedOperationException();
+        if (verdi == null) {
+            return false;
+        }
+        Node<T> current = hode;
+
+        while (current != null) {
+            if (current.verdi.equals(verdi)) {
+                break;
+            }
+            current = current.neste;
+        }
+        if (current == null) {
+            return false;
+        }
+        if (current == hode) {  //Den første fjernes
+            hode = hode.neste;
+            if (hode != null) {
+                hode.forrige = null;
+            }
+            else {
+                hale = null;
+            }
+        }
+        else if (current == hale) { //Den siste fjernes
+            hale = hale.forrige;
+            hale.neste = null;
+        }
+        else {
+            current.forrige.neste = current.neste;
+            current.neste.forrige = current.forrige;
+        }
+        current.verdi = null;
+        current.forrige = current.neste = null;
+
+        antall--;
+        endringer++;
+        return true;
     }
 
     @Override
     public T fjern(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks, false);
+        Node<T> current = hode;
+
+        if (antall == 1) {  //Dersom det bare er en node i listen
+            hode = hale = null;
+        }
+        else if (indeks == 0) { //Den første fjernes
+            hode = hode.neste;
+            hode.forrige = null;
+        }
+        else if (indeks == antall - 1) {    //Den siste fjernes
+            current = hale;
+            hale = hale.forrige;
+            hale.neste = null;
+        }
+        else {  //Det som er imellom fjernes
+            current = finnNode(indeks);
+            current.forrige.neste = current.neste;
+            current.neste.forrige = current.forrige;
+        }
+        antall--;
+        endringer++;
+        return current.verdi;
     }
 
     @Override

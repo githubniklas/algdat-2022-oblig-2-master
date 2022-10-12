@@ -38,3 +38,5 @@ I Oppgave 8 b) Gikk jeg frem ved å lage metoden Iterator<T> iterator() denne re
 I Oppgave 8 c) gikk jeg frem ved å lage konstruktøren private DobbeltLenketListeIterator(int indeks) her blir pekeren denne satt til den noden som hører til indeksen. 
 
 I Oppgave 8 d) gikk jeg frem ved å lage metoden Iterator<T> iterator(int indeks), her blir det tatt en indekskontroll av indeksen og deretter blir det returnert en instans av iteratorklassen.
+
+Oppgave 8 (NB) Testen for oppgave 8 feiler ettersom at nullstill() ikke er laget fra oppgave 7. Kommenterte ut testene og sjekket på nytt uten dem og det funket.

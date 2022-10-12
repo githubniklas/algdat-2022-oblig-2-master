@@ -1117,6 +1117,7 @@ class Oblig2Test {
         i = liste.iterator();
         liste.nullstill();  // nullstiller etter at iteratoren er opprettet
 
+
         try {
             i.next();
             antallFeil++;
@@ -1128,6 +1129,7 @@ class Oblig2Test {
                 antallFeil++;
             }
         }
+
 
         for (int j = 1; j <= 7; j++) liste.leggInn(j);
 
@@ -1162,6 +1164,7 @@ class Oblig2Test {
             }
             m++;
         }
+
 
         try {
             i.next();

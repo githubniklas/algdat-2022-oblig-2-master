@@ -239,14 +239,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if (current == null) {
             return false;
         }
-        if (current == hode) {  //Den første fjernes
+        else if (antall == 1) { //Dersom det bare er en node i listen
+            hode = hale = null;
+        }
+        else if (current == hode) {  //Den første fjernes
             hode = hode.neste;
-            if (hode != null) {
-                hode.forrige = null;
-            }
-            else {
-                hale = null;
-            }
+            hode.forrige = null;
         }
         else if (current == hale) { //Den siste fjernes
             hale = hale.forrige;

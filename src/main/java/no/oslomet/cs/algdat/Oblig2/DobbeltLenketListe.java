@@ -1,6 +1,7 @@
 package no.oslomet.cs.algdat.Oblig2;
-
-
+/*
+        Niklas Laache s362125@oslomet.no
+*/
 ////////////////// class DobbeltLenketListe //////////////////////////////
 
 
